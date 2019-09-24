@@ -30,6 +30,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     int screenHeight;
     int screenWidth;
 
+    int middleOfTheScreen = screenWidth/2;
     // game state
     boolean gameIsRunning;
 
@@ -55,6 +56,11 @@ public class GameEngine extends SurfaceView implements Runnable {
     int ballYPosition;      // keep track of ball -y
 
 
+
+    //Racket position
+
+    int racketXPosition;
+    int racketYPosition;
     // ----------------------------
     // ## GAME STATS - number of lives, score, etc
     // ----------------------------
@@ -80,6 +86,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.ballXPosition = this.screenWidth / 2;
         this.ballYPosition = this.screenHeight / 2;
 
+        this.racketXPosition = 550;
+        this.racketYPosition = 1500;
 
         // @TODO: Any other game setup stuff goes here
 
@@ -212,8 +220,9 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             //2. Draw the racket
             paintbrush.setColor(Color.YELLOW);
-            this.canvas.drawRect(500,1500,950,1550,paintbrush);
+            this.canvas.drawRect(this.racketXPosition,this.racketYPosition,this.racketXPosition+400,this.racketYPosition + 50,paintbrush);
 
+            paintbrush.setColor(Color.WHITE);
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
             canvas.drawText("Score: 25", 20, 100, paintbrush);
@@ -237,6 +246,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     // USER INPUT FUNCTIONS
     // ------------------------------
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
@@ -247,6 +257,14 @@ public class GameEngine extends SurfaceView implements Runnable {
             float fingerXPosition = event.getX();
             float fingerYPosition = event.getY();
 
+
+            if(fingerXPosition < middleOfTheScreen){
+
+                
+
+            }else{
+
+            }
 
             Log.d(TAG,"Person's pressed:"+ fingerXPosition+","+fingerYPosition);
         }
