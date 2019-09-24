@@ -61,6 +61,11 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     int racketXPosition;
     int racketYPosition;
+
+
+    boolean racketIsMovingLeft;
+    boolean racketIsMovingRight;
+
     // ----------------------------
     // ## GAME STATS - number of lives, score, etc
     // ----------------------------
@@ -140,6 +145,8 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ------------------------------
 
     String directionBallIsMoving = "down";
+    String personTapped = "";
+
 
 
     // 1. Tell Android the (x,y) positions of your sprites
@@ -170,7 +177,20 @@ public class GameEngine extends SurfaceView implements Runnable {
                 }
             }
 
-            //2. change the direction of the ball
+            if(personTapped.contentEquals("right")){
+                this.racketXPosition = this.racketXPosition + 10;
+//                if(racketXPosition > screenWidth){
+//                    directionBallIsMoving = "left";
+//                }
+            }
+            else if(personTapped.contentEquals("left")){
+                this.racketXPosition = this.racketXPosition - 10;
+//                if(racketXPosition <= 0){
+//                    directionBallIsMoving = "right";
+//                }
+            }
+            //2. change the direction of the racket
+
 
 
 
@@ -191,6 +211,13 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
         // @TODO: Collision detection code
+
+if(ballYPosition >= racketYPosition){
+    Log.d(TAG,"touching racket");
+    directionBallIsMoving = "up";
+}
+
+
 
     }
 
@@ -258,11 +285,14 @@ public class GameEngine extends SurfaceView implements Runnable {
             float fingerYPosition = event.getY();
 
 
-            if(fingerXPosition < middleOfTheScreen){
+            if(fingerXPosition <= middleOfTheScreen){
 
-                
+                personTapped = "right";
 
-            }else{
+            }else if(fingerXPosition > middleOfTheScreen){
+
+
+                personTapped = "left";
 
             }
 
