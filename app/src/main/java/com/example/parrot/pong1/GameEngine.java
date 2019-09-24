@@ -243,6 +243,12 @@ public class GameEngine extends SurfaceView implements Runnable {
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
             // user pushed down on screen
+
+            float fingerXPosition = event.getX();
+            float fingerYPosition = event.getY();
+
+
+            Log.d(TAG,"Person's pressed:"+ fingerXPosition+","+fingerYPosition);
         }
         else if (userAction == MotionEvent.ACTION_UP) {
             // user lifted their finger
