@@ -43,7 +43,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     Canvas canvas;
     Paint paintbrush;
 
-
+    int score;
 
     // -----------------------------------
     // ## GAME SPECIFIC VARIABLES
@@ -91,7 +91,7 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.ballXPosition = this.screenWidth / 2;
         this.ballYPosition = this.screenHeight / 2;
 
-        this.racketXPosition = 550;
+        this.racketXPosition = 250;
         this.racketYPosition = 1500;
 
         // @TODO: Any other game setup stuff goes here
@@ -179,9 +179,9 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             if(personTapped.contentEquals("right")){
                 this.racketXPosition = this.racketXPosition + 10;
-//                if(racketXPosition > screenWidth){
-//                    directionBallIsMoving = "left";
-//                }
+                if(racketXPosition > screenWidth){
+                    directionBallIsMoving = "left";
+                }
             }
             else if(personTapped.contentEquals("left")){
                 this.racketXPosition = this.racketXPosition - 10;
@@ -215,6 +215,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 if(ballYPosition >= racketYPosition){
     Log.d(TAG,"touching racket");
     directionBallIsMoving = "up";
+    score = score + 1;
 }
 
 
@@ -252,7 +253,7 @@ if(ballYPosition >= racketYPosition){
             paintbrush.setColor(Color.WHITE);
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
-            canvas.drawText("Score: 25", 20, 100, paintbrush);
+            canvas.drawText("Score :" + score, 20, 100, paintbrush);
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
@@ -287,12 +288,12 @@ if(ballYPosition >= racketYPosition){
 
             if(fingerXPosition <= middleOfTheScreen){
 
-                personTapped = "right";
+                personTapped = "left";
 
             }else if(fingerXPosition > middleOfTheScreen){
 
 
-                personTapped = "left";
+                personTapped = "right";
 
             }
 
