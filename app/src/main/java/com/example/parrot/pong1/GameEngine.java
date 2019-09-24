@@ -145,7 +145,8 @@ public class GameEngine extends SurfaceView implements Runnable {
             this.ballXPosition = this.ballXPosition + 15;
 
             if(this.ballXPosition > this.screenWidth){
-                this.ballXPosition = this.ballXPosition - 15;
+                directionBallIsMoving = "left";
+
             }
 
         }else if(directionBallIsMoving.contentEquals("left")){
