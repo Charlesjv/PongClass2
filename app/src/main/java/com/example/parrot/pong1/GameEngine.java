@@ -212,7 +212,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             //2. Draw the racket
             paintbrush.setColor(Color.YELLOW);
-            this.canvas.drawRect(500,500,1000,1550,paintbrush);
+            this.canvas.drawRect(500,1500,950,1550,paintbrush);
 
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
