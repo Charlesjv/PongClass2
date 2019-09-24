@@ -131,7 +131,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     // - update, draw, setFPS
     // ------------------------------
 
-
+    String directionBallIsMoving = "down";
 
 
     // 1. Tell Android the (x,y) positions of your sprites
@@ -140,7 +140,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-        String directionBallIsMoving = "down";
+
 
 
         // 1.make ball bounce of left wall
@@ -156,6 +156,10 @@ public class GameEngine extends SurfaceView implements Runnable {
             }
             if(directionBallIsMoving == "up"){
                 this.ballYPosition = this.ballYPosition - 10;
+
+                if(this.ballYPosition <= 0){
+                    directionBallIsMoving = "down";
+                }
             }
 
             //2. change the direction of the ball
@@ -206,6 +210,9 @@ public class GameEngine extends SurfaceView implements Runnable {
             // this.canvas.drawRect(left, top, right, bottom, paintbrush);
 
 
+            //2. Draw the racket
+            paintbrush.setColor(Color.YELLOW);
+            this.canvas.drawRect(500,500,1000,1550,paintbrush);
 
             //@TODO: Draw game statistics (lives, score, etc)
             paintbrush.setTextSize(60);
