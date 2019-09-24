@@ -139,38 +139,30 @@ public class GameEngine extends SurfaceView implements Runnable {
         // @TODO: Update the position of the sprites
 
 
-        String directionBallIsMoving = "right";
 
-        if(directionBallIsMoving.contentEquals("right")){
-            this.ballXPosition = this.ballXPosition + 15;
+        String directionBallIsMoving = "down";
 
-            if(this.ballXPosition > this.screenWidth){
-                directionBallIsMoving = "left";
+
+        // 1.make ball bounce of left wall
+            if (directionBallIsMoving == "down"){
+                this.ballYPosition = this.ballYPosition + 10;
+
+
+                if(this.ballYPosition >= this.screenHeight){
+                    directionBallIsMoving = "up";
+
+                }
 
             }
-
-        }else if(directionBallIsMoving.contentEquals("left")){
-            this.ballXPosition = this.ballXPosition - 10;
-
-            // 1.make ball bounce of left wall
-            if (this.ballXPosition < 0){
-                directionBallIsMoving = "right";
+            if(directionBallIsMoving == "up"){
+                this.ballYPosition = this.ballYPosition - 10;
             }
 
             //2. change the direction of the ball
 
-        }
 
 
         // 1. calculate a new position for the ball!
-        this.ballXPosition = this.ballXPosition + 10;
-
-        if (this.ballXPosition >= this.screenWidth) {
-            this.ballXPosition = this.ballXPosition - 40;
-        }
-
-        // DEBUG - by outputing current positiong
-        Log.d(TAG, "XPos: " + this.ballXPosition);
 
 
 
